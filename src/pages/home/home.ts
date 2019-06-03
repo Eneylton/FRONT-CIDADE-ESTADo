@@ -1,14 +1,38 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
+import { CategoriaServerProvider } from '../../providers/categoria-server/categoria-server';
+import { Categoria } from '../../model/categoria';
 
+
+@IonicPage({})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  items:Categoria[];
 
+  constructor(public navCtrl: NavController, 
+              private service: CategoriaServerProvider) {
+
+  }
+
+  ionViewDidLoad() {
+    this.service.buscarTodos().subscribe(response =>{
+     
+      this.items = response;
+
+      console.log(response);
+
+    },
+    error =>{
+      console.log(error);
+    })
+  }
+
+  openCategoria(){
+    this.navCtrl.push('CategoriaPage');
   }
 
 }
