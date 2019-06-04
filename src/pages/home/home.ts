@@ -23,8 +23,6 @@ export class HomePage {
      
       this.items = response;
 
-      console.log(response);
-
     },
     error =>{
       console.log(error);
@@ -33,6 +31,10 @@ export class HomePage {
 
   openCategoria(){
     this.navCtrl.push('CategoriaPage');
+  }
+
+  categoriaEditar(item : any){
+    this.navCtrl.push('UpdatePage',{"item": item});
   }
 
 }

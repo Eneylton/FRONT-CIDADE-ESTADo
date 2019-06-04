@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CategoriaServerProvider } from '../providers/categoria-server/categoria-server';
+import { EstadoServiceProvider } from '../providers/estado-service/estado-service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CategoriaServerProvider } from '../providers/categoria-server/categoria
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CategoriaServerProvider
+    CategoriaServerProvider,
+    EstadoServiceProvider
   ]
 })
 export class AppModule {}

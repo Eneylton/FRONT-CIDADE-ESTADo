@@ -1,34 +1,39 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaServerProvider } from '../../providers/categoria-server/categoria-server';
-import { Categoria } from '../../model/categoria';
+
 
 @IonicPage({})
 @Component({
-  selector: 'page-categoria',
-  templateUrl: 'categoria.html',
+  selector: 'page-update',
+  templateUrl: 'update.html',
 })
-export class CategoriaPage {
+export class UpdatePage {
 
   formGroup: FormGroup;
-
-  items: Categoria[];
 
   constructor(public navCtrl: NavController,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     private servidor: CategoriaServerProvider,
-    public alertCtrl: AlertController
-  ) {
-
+  ){
     this.formGroup = this.formBuilder.group({
+      id: [null, [Validators.required, Validators.maxLength(120)]],
       nome: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(120)]]
     })
   }
 
-  adicionar() {
-    this.servidor.insert(this.formGroup.value)
+  ionViewDidLoad() {
+    let items =  this.navParams.get('item');
+    this.popularCampos(items);
+    }
+
+  editar() {
+    let items =  this.navParams.get('item');
+    console.log(items);
+    this.servidor.update(this.formGroup.value,items.id)
       .subscribe(response => {
         this.showInsertOk();
       },
@@ -52,4 +57,12 @@ export class CategoriaPage {
     });
     alert.present();
   }
+
+  popularCampos(dados){
+    
+    this.formGroup.controls['id'].setValue(dados.id);
+    this.formGroup.controls['nome'].setValue(dados.nome);
+  
+  }
+
 }

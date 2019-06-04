@@ -7,8 +7,8 @@
 <ion-content padding>
 
   <ion-fab left bottom>
-    <button ion-fab color="secondary" (click)="openCategoria()" >
-        <ion-icon name="star"></ion-icon>
+    <button ion-fab color="secondary" (click)="openCategoria()">
+      <ion-icon name="star"></ion-icon>
     </button>
   </ion-fab>
 
@@ -17,12 +17,10 @@
       <ion-item>
 
         <h2>{{ item.nome }}</h2>
-        <h3>{{ item.produtos[0].nome }}</h3>
-        <h3>R$ {{ item.produtos[1].preco }}</h3>
       </ion-item>
 
       <ion-item-options side="right">
-        <button ion-button color="primary">
+        <button ion-button color="primary" (click)="categoriaEditar(item)">
           <ion-icon name="logo-angular"></ion-icon>
           Editar
         </button>

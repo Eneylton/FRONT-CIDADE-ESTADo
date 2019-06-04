@@ -16,4 +16,24 @@ export class CategoriaServerProvider {
     return this.http.get<Categoria[]>(`${API_CONFIG.baseUrl}/categorias`)   
    }
 
+   insert(obj : Categoria) {
+    return this.http.post(`${API_CONFIG.baseUrl}/categorias`, 
+        obj,
+        { 
+            observe: 'response', 
+            responseType: 'text'
+        }
+    ); 
+}
+
+update(obj : Categoria,id :any) {
+    return this.http.put(`${API_CONFIG.baseUrl}/categorias/${id}`, 
+        obj,
+        { 
+            observe: 'response', 
+            responseType: 'text'
+        }
+    ); 
+}
+
 }
