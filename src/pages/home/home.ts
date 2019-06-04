@@ -37,4 +37,14 @@ export class HomePage {
     this.navCtrl.push('UpdatePage',{"item": item});
   }
 
+  excluirCategoria(item: any){
+    console.log(item.id);
+    this.service.delete(item.id).subscribe(response =>{
+      
+      console.log(response);
+      this.navCtrl.setRoot('HomePage');
+    });
+
+  }
+
 }

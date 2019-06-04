@@ -17,7 +17,7 @@ export class UpdatePage {
     public formBuilder: FormBuilder,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    private servidor: CategoriaServerProvider,
+    private servidor: CategoriaServerProvider
   ){
     this.formGroup = this.formBuilder.group({
       id: [null, [Validators.required, Validators.maxLength(120)]],

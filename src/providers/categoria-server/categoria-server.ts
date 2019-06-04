@@ -36,4 +36,9 @@ update(obj : Categoria,id :any) {
     ); 
 }
 
+delete(id :any) {
+    return this.http.delete(`${API_CONFIG.baseUrl}/categorias/${id}`
+    ); 
+}
+
 }
